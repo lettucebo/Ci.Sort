@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Ci.Mvc.Sort</id>
+        <version>1.0.0</version>
+        <authors>MoneyYu</authors>
+        <owners>MoneyYu</owners>
+        <projectUrl>https://github.com/lettucebo/Ci.Mvc.Sort</projectUrl>
+        <iconUrl>https://i.imgur.com/3xZ4Cdx.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A simple solution for sort table use aspnet mvc c#</description>
+        <summary>A simple solution for sort table use aspnet mvc c#</summary>
+        <dependencies>
+            <group targetFramework=".NETFramework4.5.2">
+                <dependency id="Microsoft.AspNet.Mvc" version="5.2.3" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="Ci.Mvc.Sort\bin\Release\Ci.Mvc.Sort.dll" target="lib\net452\Ci.Mvc.Sort.dll" />
+    </files>
+</package>
