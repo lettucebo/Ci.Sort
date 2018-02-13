@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Ci.Sort</id>
+        <version>1.0.0</version>
+        <title>Ci.Sort</title>
+        <authors>MoneyYu</authors>
+        <owners>MoneyYu</owners>
+        <projectUrl>https://github.com/lettucebo/Ci.Sort</projectUrl>
+        <iconUrl>https://i.imgur.com/3xZ4Cdx.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A simple solution for sort data use c#</description>
+        <summary>A simple solution for sort data use c#</summary>
+        <tags>sort,table</tags>
+    </metadata>
+    <files>
+        <file src="Ci.Sort\bin\Release\Ci.Sort.dll" target="lib\net452\Ci.Sort.dll" />
+    </files>
+</package>

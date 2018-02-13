@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ci.Mvc.Sort.Enums;
-using Ci.Mvc.Sort.Models;
+using Ci.Sort.Enums;
+using Ci.Sort.Models;
 
-namespace Ci.Mvc.Sort
+namespace Ci.Sort
 {
     public static class ListExtension
     {
@@ -25,7 +23,7 @@ namespace Ci.Mvc.Sort
 
             PropertyDescriptor prop = TypeDescriptor.GetProperties(typeof(T)).Find(sort.Key, true);
 
-            query = sort.Order == Order.Up ? query.OrderBy(x => prop.GetValue(x)).ToList() : query.OrderByDescending(x => prop.GetValue(x)).ToList();
+            query = sort.Order == Order.Ascending ? query.OrderBy(x => prop.GetValue(x)).ToList() : query.OrderByDescending(x => prop.GetValue(x)).ToList();
             return query;
         }
     }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using System.Web.Routing;
-using Ci.Mvc.Sort.Enums;
-using Ci.Mvc.Sort.Models;
+using Ci.Sort.Enums;
+using Ci.Sort.Models;
 
 namespace Ci.Mvc.Sort
 {
@@ -28,16 +28,16 @@ namespace Ci.Mvc.Sort
             MvcHtmlString url = MvcHtmlString.Empty;
             if (sort.Key == key)
             {
-                if (sort.Order == Order.Up)
+                if (sort.Order == Order.Ascending)
                 {
-                    routeValues.Add(nameof(SortOrder.Order), Order.Down);
+                    routeValues.Add(nameof(SortOrder.Order), Order.Descending);
                     url = MvcHtmlString.Create(urlHelper.Action(actionName, routeValues));
                     iTagBuilder.MergeAttribute("class", "fa fa-arrow-up");
                     iTagBuilder.MergeAttribute("aria-hidden", "true");
                 }
                 else
                 {
-                    routeValues.Add(nameof(SortOrder.Order), Order.Up);
+                    routeValues.Add(nameof(SortOrder.Order), Order.Ascending);
                     url = MvcHtmlString.Create(urlHelper.Action(actionName, routeValues));
                     iTagBuilder.MergeAttribute("class", "fa fa-arrow-down");
                     iTagBuilder.MergeAttribute("aria-hidden", "true");
@@ -45,7 +45,7 @@ namespace Ci.Mvc.Sort
             }
             else
             {
-                routeValues.Add(nameof(SortOrder.Order), Order.Down);
+                routeValues.Add(nameof(SortOrder.Order), Order.Descending);
                 url = MvcHtmlString.Create(urlHelper.Action(actionName, routeValues));
             }
 

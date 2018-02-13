@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Ci.Mvc.Sort.Enums;
-using Ci.Mvc.Sort.Models;
+using Ci.Sort.Enums;
+using Ci.Sort.Models;
 
-namespace Ci.Mvc.Sort
+namespace Ci.Sort
 {
     public static class QueryableExtensions
     {
@@ -27,7 +23,7 @@ namespace Ci.Mvc.Sort
             var param = Expression.Parameter(typeof(T), "p");
             var prop = Expression.Property(param, sort.Key);
             var exp = Expression.Lambda(prop, param);
-            string method = sort.Order == Order.Up ? "OrderBy" : "OrderByDescending";
+            string method = sort.Order == Order.Ascending ? "OrderBy" : "OrderByDescending";
             Type[] types = new Type[] { query.ElementType, exp.Body.Type };
             var mce = Expression.Call(typeof(Queryable), method, types, query.Expression, exp);
             return query.Provider.CreateQuery<T>(mce);
