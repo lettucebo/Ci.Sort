@@ -13,8 +13,8 @@ if (!keyword.IsNullOrWhiteSpace())
 if (sort == null || sort.Key.IsNullOrWhiteSpace())
 {
     sort = new SortOrder();
-    sort.Key = nameof(Library.Bluetooth.Models.MmsFactoryBluetooth.Bluetooth.Mac);
-    sort.Order = Order.Up;
+    sort.Key = nameof(Bluetooth.Mac);
+    sort.Order = Order.Ascending;
 }
 query = query.Sort(sort);
 ```
