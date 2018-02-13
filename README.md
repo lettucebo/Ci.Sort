@@ -2,7 +2,7 @@
 A simple solution for sort table use c#
 
 ## Usage
-```chsarp
+```csharp
 var query = db.Bluetooths.AsQueryable();
 
 if (!keyword.IsNullOrWhiteSpace())
