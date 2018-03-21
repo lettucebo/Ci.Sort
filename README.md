@@ -32,3 +32,5 @@ SortOrder sort = Viewbag.sort
     @Html.SortLabel("Name", nameof(Bluetooth.Name), new { page = Request["page"], keyword = Request["keyword"] }, sort)
 </td>
 ```
+## Detailed using for sorting with included types 
+You can find extended example at [Ci.Test/Program.cs](https://github.com/lettucebo/Ci.Sort/blob/master/Ci.Test/Program.cs) file
