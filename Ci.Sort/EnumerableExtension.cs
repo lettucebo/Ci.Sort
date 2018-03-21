@@ -2,6 +2,7 @@
 using Ci.Sort.Models;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Ci.Sort
@@ -26,38 +27,56 @@ namespace Ci.Sort
 
             var keyProp = properties
                 .Find(sort.Key, true);
-            PropertyDescriptor baseProp = null;
+            if (keyProp != null)
+                return sort.Order == Order.Ascending
+                   ? query.OrderBy(x => keyProp.GetValue(x))
+                   : query.OrderByDescending(x => keyProp.GetValue(x));
 
-            if (keyProp == null)
+            return SortByInternalProperties(query, sort, properties);
+        }
+
+        internal static IEnumerable<T> SortByInternalProperties<T>(IEnumerable<T> query, SortOrder sort,
+            PropertyDescriptorCollection properties)
+        {
+            if (properties == null || properties.Count != 0)
             {
-                foreach (PropertyDescriptor property in properties)
-                {
-                    baseProp = property;
-                    var childProperties = property.GetChildProperties();
-                    keyProp = childProperties
-                        .Find(sort.Key, true);
+                Debug.WriteLine("Warning - Sort Property wasn't founded!");
+                //todo throw an exception????
+                return query;
+            }
 
-                    if (keyProp != null) break;
-                }
+            PropertyDescriptor keyProp = null;
+            PropertyDescriptor baseProp = null;
+            foreach (PropertyDescriptor property in properties)
+            {
+                baseProp = property;
+                var childProperties = property.GetChildProperties();
+                keyProp = childProperties
+                    .Find(sort.Key, true);
 
-                if (keyProp != null)
-                {
-                    query = sort.Order == Order.Ascending
-                        ? query.OrderBy(x => keyProp.GetValue(baseProp.GetValue(x)))
-                        : query.OrderByDescending(x => keyProp.GetValue(baseProp.GetValue(x)));
-                }
-                else
-                {
-                    //todo throw exception????
-                }
+                if (keyProp != null) break;
+            }
+
+            object GetValue(T arg)
+            {
+                var baseValue = baseProp.GetValue(arg);
+                return baseValue != null
+                    ? keyProp.GetValue(baseValue)
+                    : null;//todo throw an exception????
+            }
+
+            if (keyProp != null)
+            {
+                query = sort.Order == Order.Ascending
+                    ? query.OrderBy(GetValue)//todo if null - here will be an exception
+                    : query.OrderByDescending(GetValue);//todo if null - here will be an exception
             }
             else
             {
-                query = sort.Order == Order.Ascending
-                    ? query.OrderBy(x => keyProp.GetValue(x))
-                    : query.OrderByDescending(x => keyProp.GetValue(x));
-
+                Debug.WriteLine("Warning - Sort Property wasn't founded!");
+                //todo throw an exception????
             }
+
             return query;
         }
     }
