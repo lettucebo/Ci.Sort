@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="EnumerableExtension.cs" />
     <Compile Include="Enums\Order.cs" />
-    <Compile Include="ListExtension.cs" />
     <Compile Include="Models\SortOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryableExtensions.cs" />
