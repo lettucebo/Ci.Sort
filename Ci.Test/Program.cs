@@ -12,7 +12,6 @@ namespace Ci.Test
     {
         static void Main(string[] args)
         {
-            //working solution
             var sortOrder = new SortOrder
             {
                 Key = nameof(Engine.Name),
@@ -29,8 +28,12 @@ namespace Ci.Test
                 Console.WriteLine($"Engine => {engine.Name}; {engine.EnginePower}");
             }
 
-            //get an Exception
             foreach (var car in DataGenerator.GetCars().Sort(sortOrder))
+            {
+                Console.WriteLine($"Car => Engine => {car.Engine.Name}; {car.Engine.EnginePower}; Seat = > {car.CarSeat.SeatType}");
+            }
+
+            foreach (var car in DataGenerator.GetCars().AsQueryable().Sort(sortOrder))
             {
                 Console.WriteLine($"Car => Engine => {car.Engine.Name}; {car.Engine.EnginePower}; Seat = > {car.CarSeat.SeatType}");
             }

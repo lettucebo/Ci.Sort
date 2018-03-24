@@ -38,7 +38,7 @@ namespace Ci.Sort
         internal static IEnumerable<T> SortByInternalProperties<T>(IEnumerable<T> query, SortOrder sort,
             PropertyDescriptorCollection properties)
         {
-            if (properties == null || properties.Count != 0)
+            if (properties == null || properties.Count == 0)
             {
                 Debug.WriteLine("Warning - Sort Property wasn't founded!");
                 //todo throw an exception????
