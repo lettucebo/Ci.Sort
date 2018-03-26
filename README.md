@@ -1,6 +1,10 @@
 # Ci.Sort
 A simple solution for sort table use c#
 
+## Concept
+This is library main idea is to help aspnet mvc table with sort functionality
+But still can use Ci.Sort only
+
 ## Usage
 ```csharp
 var query = db.Bluetooths.AsQueryable();
